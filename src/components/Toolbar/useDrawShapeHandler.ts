@@ -5,6 +5,7 @@ import { fabric } from "fabric";
  * @param canvas fabric.Canvas对象
  * @returns 事件处理函数handler，当按下鼠标时开始drawShapeStart, 松开鼠标时drawShapeEnd
  */
+// 事件处理没法取消
 export default function useDrawShapeHandler(canvas: fabric.Canvas | null) {
   const handler = useCallback(() => {
     if (!canvas) {

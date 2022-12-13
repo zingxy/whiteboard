@@ -1,17 +1,19 @@
 import { fabric } from "fabric";
+import Canvas from "../utils/Canvas";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export default function useFabric() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
+  const [canvas, setCanvas] = useState<Canvas | null>(null);
 
   useLayoutEffect(() => {
-    const instance = new fabric.Canvas(canvasRef.current, {
+    const instance = new Canvas(canvasRef.current, {
       interactive: true,
-      backgroundColor: "pink",
       width: window.innerWidth,
       height: window.innerHeight,
     });
+    instance.perPixelTargetFind = true;
+    instance.uniformScaling = true;
     setCanvas(instance);
     return () => {
       instance.dispose();

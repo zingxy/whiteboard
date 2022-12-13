@@ -1,8 +1,8 @@
 import useFabric from "../../hooks/useFabric";
-
+import Canvas from "../../utils/Canvas";
 import React, { createContext } from "react";
 
-export const CanvasContext = createContext<fabric.Canvas | null>(null);
+export const CanvasContext = createContext<Canvas | null>(null);
 
 interface WhiteBoardProps {
   children?: React.ReactNode;
@@ -18,9 +18,17 @@ export default function WhiteBoard({ children }: WhiteBoardProps) {
       className="whiteboard"
       style={{
         position: "relative",
+        userSelect: "none",
       }}
+      onKeyDown={(e) => {
+        if (e.key === "Backspace" && canvas) {
+          console.log("backspace");
+          canvas.backspace();
+        }
+      }}
+      tabIndex={1}
     >
-      <canvas ref={canvasRef} />
+      <canvas ref={canvasRef}  />
       <CanvasContext.Provider value={canvas}>{children}</CanvasContext.Provider>
     </div>
   );

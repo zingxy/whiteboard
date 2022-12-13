@@ -1,10 +1,16 @@
-import { useState } from "react";
 import "./App.css";
+import "antd/dist/reset.css";
+import WhiteBoard from "./components/WhiteBoard/WhiteBoard";
+import Toolbar from "./components/Toolbar/Toolbar";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <div className="App">{count}</div>;
+  return (
+    <>
+      <WhiteBoard>
+        <Toolbar />
+      </WhiteBoard>
+    </>
+  );
 }
 
 export default App;
